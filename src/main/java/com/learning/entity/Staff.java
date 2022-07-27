@@ -19,17 +19,16 @@ public class Staff{
 	String password;
 	boolean allow;
 	
-	Staff() {
-		super();
-		// TODO Auto-generated constructor stub
+	public Staff() {
 	}
 	
-	Staff(int id, String username, String fullName, String password) {
+	public Staff(int id, String username, String fullName, String password,boolean allow) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.fullName = fullName;
 		this.password = password;
+		this.allow = allow;
 	}
 	
 	public int getId() {

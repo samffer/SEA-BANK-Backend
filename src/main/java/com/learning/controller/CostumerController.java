@@ -5,19 +5,20 @@ import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.learning.entity.Approver;
+import com.learning.entity.Account;
 import com.learning.entity.Customer;
 import com.learning.service.CustomerServices;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value="/api/custome")
+@RequestMapping(value="/api/customer")
 public class CostumerController {
 
 	@Autowired
@@ -25,6 +26,7 @@ public class CostumerController {
 	
 	@PostMapping(value="/register") //customer can create login
 	public ResponseEntity<Customer> registerCustomer(@RequestBody Customer entity) {
+		System.out.println(entity);
 		entity = service.createCustomer(entity);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -41,7 +43,15 @@ public class CostumerController {
 		return response;
 	}
 	
+
 	
+	@PostMapping(value = "/{customerId}/account") //customer can create a new account
+	public ResponseEntity<Account> createAccount(@RequestBody Account entity, @PathVariable Long customerId) {
+		System.out.println(customerId +" ------ "+entity);
+		ResponseEntity<Account> response = service.createAccount(entity,customerId);
+		System.out.println(response);
+		return response;
+	}
 	
 
 }

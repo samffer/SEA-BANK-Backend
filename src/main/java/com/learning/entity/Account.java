@@ -16,11 +16,13 @@ public class Account {
 	}
 	
 	
-	public Account(Long id, String type, Double balance, boolean allow) {
+	public Account(Long id, String type, Double balance, boolean approved,Long customerid) {
 		this.id = id;
 		this.type = type;
 		this.balance = balance;
-		this.allow=allow;
+		this.approved=approved;
+		this.customerid = customerid;
+		
 	}
 
 
@@ -29,7 +31,9 @@ public class Account {
 	Long id;
 	String  type;
 	Double balance;
-	boolean allow;
+	boolean approved;
+	Long customerid;
+	
 	public Long getId() {
 		return id;
 	}
@@ -79,19 +83,32 @@ public class Account {
 	}
 
 
-	public boolean isAllow() {
-		return allow;
-	}
 
-
-	public void setAllow(boolean allow) {
-		this.allow = allow;
-	}
 
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", type=" + type + ", balance=" + balance + ", allow=" + allow + "]";
+		return "Account [id=" + id + ", type=" + type + ", balance=" + balance + ", approved=" + approved + "Customer id = "+customerid+"]";
+	}
+
+
+	public boolean isApproved() {
+		return approved;
+	}
+
+
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
+
+
+	public Long getCustomerid() {
+		return customerid;
+	}
+
+
+	public void setCustomerid(Long customerid) {
+		this.customerid = customerid;
 	}
 	
 	

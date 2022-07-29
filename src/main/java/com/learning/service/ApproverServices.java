@@ -47,7 +47,11 @@ public class ApproverServices {
 	public ResponseEntity<Staff> createStaff(Staff entity) {
 		ExampleMatcher staffMatcher = ExampleMatcher.matching()
 				.withIgnoreNullValues()
-				.withIgnorePaths("id");
+				.withIgnorePaths("id")
+				.withIgnorePaths("password")
+				.withIgnorePaths("fullName")
+				.withIgnorePaths("allow");
+		
 		
 		Example<Staff> exemple = Example.of(entity,staffMatcher);
 		

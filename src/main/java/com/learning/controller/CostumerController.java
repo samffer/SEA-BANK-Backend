@@ -1,10 +1,12 @@
 package com.learning.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,6 +52,13 @@ public class CostumerController {
 		System.out.println(customerId +" ------ "+entity);
 		ResponseEntity<Account> response = service.createAccount(entity,customerId);
 		System.out.println(response);
+		return response;
+	}
+	
+	@GetMapping(value="/{customerId}/account")
+	public ResponseEntity<List<Account>> getAllAcountsById (@PathVariable Long customerId){
+		
+		ResponseEntity<List<Account>> response = service.getAllAccontsById(customerId);
 		return response;
 	}
 	

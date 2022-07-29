@@ -81,4 +81,16 @@ public class CustomerServices {
 		return ResponseEntity.ok().body(entity);
 	}
 
+	public ResponseEntity<List<Account>> getAllAccontsById(Long customerId) {
+		Account entity = new Account();
+		entity.setCustomerid(customerId);
+		System.out.println(entity);
+		ExampleMatcher accountMatcher = ExampleMatcher.matching().withIgnoreNullValues().withIgnorePaths("approved");
+		Example<Account> exemple = Example.of(entity, accountMatcher);
+		
+		List<Account> list = accountRepository.findAll(exemple);
+		System.err.println(list);
+		return ResponseEntity.ok().body(list);
+	}
+
 }
